@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Summer from "./pages/summer";
+import Spring from "./pages/spring";
+import Autumn from "./pages/autumn";
+import Winter from "./pages/winter";
+import Test from "./pages/test";
+import TestGet from "./pages/testget";
+import Photo from "./pages/photo";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Summer />} />
+        <Route path="/spring" element={<Spring />} />
+        <Route path="/summer" element={<Summer />} />
+        <Route path="/autumn" element={<Autumn />} />
+        <Route path="/winter" element={<Winter />} />
+        <Route path="/test" element={<Test />} />
+        <Route path="/testget" element={<TestGet />} />
+        <Route path="/photo" element={<Photo />} />
+      </Routes>
+    </Router>
   );
 }
 
