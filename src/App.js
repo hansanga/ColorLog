@@ -7,12 +7,14 @@ import Winter from "./pages/winter";
 import Test from "./pages/test";
 import TestGet from "./pages/testget";
 import Photo from "./pages/photo";
+import UserPage from "./pages/userPage.jsx";
 import "./App.css";
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/user/:userId" element={<UserPage />} />
         <Route path="/" element={<Summer />} />
         <Route path="/spring" element={<Spring />} />
         <Route path="/summer" element={<Summer />} />
