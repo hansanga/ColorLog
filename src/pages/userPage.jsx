@@ -26,13 +26,12 @@ import {
     Fimg,
     Cimg,
     ImageText3,
-  
+
 } from "../styles/userPage";
 
-import facePalette from "../images/4.png"
-import summer_face1 from "../images/sum_face1.png"
-import summer_face2 from "../images/sum_face2.png"
-import summer_face3 from "../images/sum_face3.png"
+import summer_face1 from "../images/ver1/sum_face1.png"
+import summer_face2 from "../images/ver1/sum_face2.png"
+import summer_face3 from "../images/ver1/sum_face3.png"
 import spring_face1 from "../images/spr_face1.png"
 import spring_face2 from "../images/spr_face2.png"
 import spring_face3 from "../images/spr_face3.png"
@@ -67,7 +66,7 @@ function UserPage() {
     const [facePaletteImagePath, setFacePaletteImagePath] = useState('');
     const [mediaUrls, setMediaUrls] = useState({ imagePath: "", videoPath: "" });
 
-    
+
     //const { id } = useParams();
     //const [user, setUser] = useState(null);
 
@@ -77,23 +76,23 @@ function UserPage() {
     //    //.then(data => setUser(data))
     //    .catch(error => console.error('Error fetching user:', error));
     //}, [userId]);
-  
+
     useEffect(() => {
-        axios.get(`http://192.168.0.75:8080/api/user/get_result`, {
+        axios.get(`https://colorlog.site/api/api/user/get_result`, {
             params: { userId }
         })
-        .then(response => {
-            setResult(response.data.result);
-            setResultImagePath(response.data.imagePath.resultImagePath);
-            setFacePaletteImagePath(response.data.imagePath.facePaletteImagePath);
-        })
-        .catch(error => console.error('There was an error!', error));
+            .then(response => {
+                setResult(response.data.result);
+                setResultImagePath(response.data.imagePath.resultImagePath);
+                setFacePaletteImagePath(response.data.imagePath.facePaletteImagePath);
+            })
+            .catch(error => console.error('There was an error!', error));
     }, [userId]);
 
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('http://192.168.0.75:8080/api/photogroup/get_photogroup', {
+                const response = await axios.get('https://colorlog.site/api/api/photogroup/get_photogroup', {
                     params: { userId }
                 });
                 setMediaUrls(response.data);
@@ -119,7 +118,7 @@ function UserPage() {
         const now = new Date();
         const minutes = now.getMinutes();  // 올바른 메서드 사용
         const filename = `file_${minutes}.${extension}`;
-    
+
         const link = document.createElement('a');
         link.href = url;
         link.download = filename;
@@ -130,76 +129,76 @@ function UserPage() {
 
 
     const data = {
-        "여름 쿨톤": {
-            bgColor: "#F3F8FF",
-            InfoBgColor : "#E8EEF7",
-            palette: palette_summer,
-            celebrities: [summer_face1, summer_face2, summer_face3],
-            cosmetics_title: "Summer Cool Items",
-            cosmetics_name1: "3CE - 벨벳 립 틴트",
-            cosmetics_name1_num: "< #GO NOW >",
-            cosmetics_name1_img: summer_lip1,
-            cosmetics_name2: "페리페라 - 워터베어 틴트",
-            cosmetics_name2_num: "< 7호 쿨릉도원 >",
-            cosmetics_name2_img: summer_lip2,
-            cosmetics_name3: "롬앤 - 쥬시 레스팅 틴트",
-            cosmetics_name3_num: "< 25호 베어 그레이프 >",
-            cosmetics_name3_img: summer_lip3,
-        },
-        "봄 웜톤": {
-            bgColor: "rgba(240, 180, 179, 0.3)",
-            InfoBgColor : "#FFF6F6",
-            palette: palette_spring,
-            celebrities: [spring_face1, spring_face2, spring_face3],
-            cosmetics_title: "Spring Warm Items",
-            cosmetics_name1: "입생로랑 - 위터스테인",
-            cosmetics_name1_num: "< 605호 뱅드코랄 >",
-            cosmetics_name1_img: spr_lip2,
-            cosmetics_Tname1: "페리페라",
-            cosmetics_name2: "- 잉크 더 에리어벨벳",
-            cosmetics_name2_num: "< 08 최애쁨템 >",
-            cosmetics_name2_img: spr_lip1,
-            cosmetics_Tname2: "헤라",
-            cosmetics_name3: "- 센슈얼 누드 글로스",
-            cosmetics_name3_num: "< 422호 란제리 >",
-            cosmetics_name3_img: spr_lip3,
-        },
-        "가을 웜톤": {
-            bgColor: "#e7e1dc",
-            InfoBgColor : "rgba(242, 234, 230, 1)",
-            palette: palette_autumn,
-            celebrities: [autumn_face1, autumn_face2, autumn_face3],
-            cosmetics_title: "Autumn Warm Items",
-            cosmetics_name1: "어뮤즈 - 듀 틴트",
-            cosmetics_name1_num: "< 12 SUNDAY >",
-            cosmetics_name1_img: aut_lip2,
-            cosmetics_Tname1: "데이지크",
-            cosmetics_name2: "- 무드 글로우 립스틱",
-            cosmetics_name2_num: "< #01 크림샌드 >",
-            cosmetics_name2_img: aut_lip1,
-            cosmetics_Tname2: "롬앤",
-            cosmetics_name3: "- 쥬시 레스팅 틴트",
-            cosmetics_name3_num: "< 23호 누카다미아 >",
-            cosmetics_name3_img: aut_lip3,
-        },
-        "겨울 쿨톤": {
-            bgColor: "rgba(132, 126, 193, 0.2)",
-            InfoBgColor : "#F5F3FF",
-            palette: palette_winter,
-            celebrities: [winter_face1, winter_face2, winter_face3],
-            cosmetics_title: "Winter Cool Items",
-            cosmetics_name1: "롬앤 - 블러 피지 틴트",
-            cosmetics_name1_num: "< 08 커런트 잼 >",
-            cosmetics_name1_img: win_lip1,
-            cosmetics_Tname1: "페리페라",
-            cosmetics_name2: "- 잉크 더 에어리 벨벳",
-            cosmetics_name2_num: "< 16 하트백만개 >",
-            cosmetics_name2_img: win_lip2,
-            cosmetics_Tname2: "릴리바이레드",
-            cosmetics_name3: "- 로맨틱 라이어 무스 틴트",
-            cosmetics_name3_num: "< 06 블루베리 머랭인척 >",
-            cosmetics_name3_img: win_lip3,
-        },
+    //     "여름 쿨톤": {
+    //         bgColor: "#F3F8FF",
+    //         InfoBgColor: "#E8EEF7",
+    //         palette: palette_summer,
+    //         celebrities: [summer_face1, summer_face2, summer_face3],
+    //         cosmetics_title: "Summer Cool Items",
+    //         cosmetics_name1: "3CE - 벨벳 립 틴트",
+    //         cosmetics_name1_num: "< #GO NOW >",
+    //         cosmetics_name1_img: summer_lip1,
+    //         cosmetics_name2: "페리페라 - 워터베어 틴트",
+    //         cosmetics_name2_num: "< 7호 쿨릉도원 >",
+    //         cosmetics_name2_img: summer_lip2,
+    //         cosmetics_name3: "롬앤 - 쥬시 레스팅 틴트",
+    //         cosmetics_name3_num: "< 25호 베어 그레이프 >",
+    //         cosmetics_name3_img: summer_lip3,
+    //     },
+    //     "봄 웜톤": {
+    //         bgColor: "rgba(240, 180, 179, 0.3)",
+    //         InfoBgColor: "#FFF6F6",
+    //         palette: palette_spring,
+    //         celebrities: [spring_face1, spring_face2, spring_face3],
+    //         cosmetics_title: "Spring Warm Items",
+    //         cosmetics_name1: "입생로랑 - 위터스테인",
+    //         cosmetics_name1_num: "< 605호 뱅드코랄 >",
+    //         cosmetics_name1_img: spr_lip2,
+    //         cosmetics_Tname1: "페리페라",
+    //         cosmetics_name2: "- 잉크 더 에리어벨벳",
+    //         cosmetics_name2_num: "< 08 최애쁨템 >",
+    //         cosmetics_name2_img: spr_lip1,
+    //         cosmetics_Tname2: "헤라",
+    //         cosmetics_name3: "- 센슈얼 누드 글로스",
+    //         cosmetics_name3_num: "< 422호 란제리 >",
+    //         cosmetics_name3_img: spr_lip3,
+    //     },
+    //     "가을 웜톤": {
+    //         bgColor: "#e7e1dc",
+    //         InfoBgColor: "rgba(242, 234, 230, 1)",
+    //         palette: palette_autumn,
+    //         celebrities: [autumn_face1, autumn_face2, autumn_face3],
+    //         cosmetics_title: "Autumn Warm Items",
+    //         cosmetics_name1: "어뮤즈 - 듀 틴트",
+    //         cosmetics_name1_num: "< 12 SUNDAY >",
+    //         cosmetics_name1_img: aut_lip2,
+    //         cosmetics_Tname1: "데이지크",
+    //         cosmetics_name2: "- 무드 글로우 립스틱",
+    //         cosmetics_name2_num: "< #01 크림샌드 >",
+    //         cosmetics_name2_img: aut_lip1,
+    //         cosmetics_Tname2: "롬앤",
+    //         cosmetics_name3: "- 쥬시 레스팅 틴트",
+    //         cosmetics_name3_num: "< 23호 누카다미아 >",
+    //         cosmetics_name3_img: aut_lip3,
+    //     },
+    //     "겨울 쿨톤": {
+    //         bgColor: "rgba(132, 126, 193, 0.2)",
+    //         InfoBgColor: "#F5F3FF",
+    //         palette: palette_winter,
+    //         celebrities: [winter_face1, winter_face2, winter_face3],
+    //         cosmetics_title: "Winter Cool Items",
+    //         cosmetics_name1: "롬앤 - 블러 피지 틴트",
+    //         cosmetics_name1_num: "< 08 커런트 잼 >",
+    //         cosmetics_name1_img: win_lip1,
+    //         cosmetics_Tname1: "페리페라",
+    //         cosmetics_name2: "- 잉크 더 에어리 벨벳",
+    //         cosmetics_name2_num: "< 16 하트백만개 >",
+    //         cosmetics_name2_img: win_lip2,
+    //         cosmetics_Tname2: "릴리바이레드",
+    //         cosmetics_name3: "- 로맨틱 라이어 무스 틴트",
+    //         cosmetics_name3_num: "< 06 블루베리 머랭인척 >",
+    //         cosmetics_name3_img: win_lip3,
+    //     },
     };
 
     const toneData = data[result] || {};
@@ -213,19 +212,19 @@ function UserPage() {
                 <Infobox bgColor={toneData.InfoBgColor}>
                     ※ QR코드 사진 / 동영상 저장 페이지는 인화 이후 1시간까지 보관 됩니다.
                 </Infobox>
-                <Buttonzone>                
+                <Buttonzone>
                     <button onClick={handleClick1}>사진 다운로드</button>
                     <button onClick={handleClick2}>동영상 다운로드</button>
                 </Buttonzone>
             </Header>
-            <MainContainer> 
+            <MainContainer>
                 <Contents>
                     <p>당신의 퍼스널 컬러는:</p>
                     <h1>{result}</h1>
                 </Contents>
                 <Contents>
                     <ImageText1>
-                        <div> 
+                        <div>
                             <Fimg src={resultImagePath} alt="얼굴 사진" />
                         </div>
                         <div>
@@ -259,7 +258,7 @@ function UserPage() {
                     <ImageText1>
                         <div>
                             <Contents2>
-                                <h1>{toneData.cosmetics_title}</h1> 
+                                <h1>{toneData.cosmetics_title}</h1>
                                 <h2>{toneData.cosmetics_name1}</h2>
                                 <h3>{toneData.cosmetics_name1_num}</h3>
                             </Contents2>
@@ -301,12 +300,11 @@ function UserPage() {
             <Margin2 />
         </Wrapper>
     );
-  
+
     // 기본적으로 로딩 상태 혹은 결과를 기다리는 메시지를 보여줄 수 있습니다.
     //return (
     //  <div>Loading...</div>
     //);
-  }
-  
-  export default UserPage;
-  
+}
+
+export default UserPage;
