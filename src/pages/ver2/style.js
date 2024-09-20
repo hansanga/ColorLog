@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
@@ -6,13 +6,38 @@ export const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Nanum Gothic', sans-serif;
   }
+  
+  @font-face {
+    font-family: 'SF_HambakSnow';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2106@1.1/SF_HambakSnow.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 `;
+
+// export const AppContainer = styled.div`
+//   padding-top: env(safe-area-inset-top, 0);
+//   padding-bottom: env(safe-area-inset-bottom, 0);
+//   padding-left: env(safe-area-inset-left, 0);
+//   padding-right: env(safe-area-inset-right, 0);
+//   margin: 0;
+//   width: 100vw;
+//   height: 100vh;
+//   overflow: hidden;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: flex-start;
+//   align-items: center;
+//   background-color: #ffffff; /* 노치 포함한 전체 영역에 색상 적용 */
+// `;
 
 // Main container
 export const ColorlogContainer = styled.div`
   font-family: "Arial", sans-serif;
   text-align: center;
   color: #333;
+  margin-bottom: 20%;
+  height: 100%;
 `;
 
 // Header styling
@@ -22,9 +47,12 @@ export const Header = styled.header`
   padding-top: 0;
 
   h1 {
-    font-size: 2rem;
-    padding: 40px 0 10px 0;
-    margin: 0;
+    font-size: 30px;
+    font-weight: normal;
+    font-family: "SF_HambakSnow";
+    padding: 20px 0 10px 0;
+    margin: 0 auto 0 auto;
+    width: 50vw;
     box-shadow: 0px 4px 4px 3px rgba(152, 152, 152, 0.25);
     border-top: none;
     border-top-left-radius: 0;
@@ -41,26 +69,29 @@ export const ColorInfo = styled.section`
   background-position: center;
   background-repeat: no-repeat;
   padding-top: 10px;
-  margin-top: 30px;
-  height: 500px;
+  margin-top: 10px;
+  height: 385px;
   width: 100%;
   h2 {
     margin: 10px;
     color: #ffffff;
-    font-size: 30px;
+    font-size: 20px;
   }
   h1 {
-    margin: 10px;
+    margin: 10px auto 0 auto;
+    width: 40vw;
     color: #a3cbf0;
     background-color: #ffffff;
-    border-radius: 10px;
-    font-size: 50px;
+    border-radius: 12px;
+    font-size: 35px;
+    padding-top: 5px;
+    padding-bottom: 3px;
   }
 `;
 
 // Profile image styling
 export const ProfileImage = styled.img`
-  width: 150px;
+  width: 110px;
   height: auto;
   margin-top: 20px;
 `;
@@ -71,14 +102,15 @@ export const Options = styled.ul`
   justify-content: center;
   gap: 20px;
   list-style: none;
-  padding: 20px;
+  padding: 10px;
   background-color: rgba(70, 110, 148, 0.5);
+  margin: 16px 0 0 0;
 `;
 
 export const OptionItem = styled.li`
   position: relative;
   text-align: center;
-  width: 100px; /* 너비는 필요에 맞게 조정 */
+  width: 80px; /* 너비는 필요에 맞게 조정 */
 
   a {
     display: block;
@@ -92,8 +124,8 @@ export const OptionItem = styled.li`
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    width: 48px;
-    height: 48px;
+    width: 45px;
+    height: 45px;
     margin: 0 auto;
   }
 
@@ -118,7 +150,7 @@ export const Palette = styled.section`
   background-color: #ffffff;
   padding: 20px;
   h3 {
-    font-size: 30px;
+    font-size: 25px;
   }
 `;
 
@@ -136,7 +168,7 @@ export const BestColor = styled.section`
   padding: 20px;
 
   h3 {
-    font-size: 30px;
+    font-size: 25px;
   }
 `;
 
@@ -144,7 +176,7 @@ export const BestColor = styled.section`
 export const ColorCircles = styled.div`
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 5px;
   margin-top: 10px;
 `;
 
@@ -152,8 +184,8 @@ export const LineBelowCircles = styled.div`
   width: 80vw;
   height: 3px;
   background-color: lightgray;
-  margin: 50px auto 0 auto;
-  box-shadow: 0px 4.4px 2.2px rgba(134, 134, 134, 0.25);
+  margin: 30px auto 0 auto;
+  box-shadow: 0px 2px 2px rgba(134, 134, 134, 0.25);
 `;
 
 // Individual circle for best colors
@@ -162,6 +194,7 @@ export const Circle = styled.div`
   height: 40px;
   border-radius: 50%;
   background-color: ${(props) => props.bgColor};
+  box-shadow: 0px 3px 2.2px rgba(134, 134, 134, 0.25);
 `;
 
 // Celebrities section
@@ -177,7 +210,7 @@ export const CelebrityImages = styled.div`
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-top: 10px;
+  margin-top: 30px;
   img {
     width: 30%; /* 이미지 너비를 30%로 설정하여 3개가 한 줄에 나오도록 */
     max-width: 200px; /* 최대 너비를 제한 */
@@ -193,17 +226,19 @@ export const CosmeticsList = styled.section`
 
   h3 {
     position: relative;
-    font-size: 30px;
+    font-size: 27px;
+    font-weight: normal;
+    font-family: "SF_HambakSnow";
     padding-bottom: 10px;
     margin-bottom: 20px;
     &::after {
       content: "";
       display: block;
-      width: 80vw;
+      width: 60vw;
       height: 2px; /* 선의 두께 */
       background-color: lightgray; /* 선의 색상 */
       margin: 30px auto 0 auto;
-      box-shadow: 0px 4.4px 2.2px rgba(134, 134, 134, 0.25); /* 그림자 추가 */
+      box-shadow: 0px 2px 2.2px rgba(134, 134, 134, 0.25); /* 그림자 추가 */
     }
   }
 
@@ -220,9 +255,9 @@ export const ListItem = styled.li`
   align-items: center;
   justify-content: flex-start;
   font-size: 1rem;
-  margin: 40px auto;
+  margin: 25px auto;
   background-color: #fff;
-  border-radius: 30px;
+  border-radius: 20px;
   box-shadow: 0px 2.2px 4.4px 2.2px rgba(134, 134, 134, 0.25);
   overflow: hidden;
   padding: 0;
@@ -240,8 +275,8 @@ export const ProductImage = styled.img`
   margin: 10px 20px 0 20px;
   margin-bottom: 0;
   padding: 0;
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
   margin-right: 20px;
 `;
@@ -265,9 +300,9 @@ export const BrandAndName = styled.div`
 
 // Brand (bold 스타일 적용)
 export const Brand = styled.span`
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-right: 10px; /* brand와 name 사이에 간격 */
+  font-weight: nomal;
+  font-size: 1rem;
+  font-family: "SF_HambakSnow";
   color: #333;
 `;
 

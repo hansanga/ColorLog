@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import {
+  // AppContainer,
   ColorlogContainer,
   Header,
   ColorInfo,
@@ -7,8 +10,6 @@ import {
   Options,
   OptionItem,
   Palette,
-  PaletteColors,
-  ColorBlock,
   BestColor,
   ColorCircles,
   Circle,
@@ -22,6 +23,7 @@ import {
   BrandAndName,
   Brand,
   LineBelowCircles,
+  GlobalStyle,
 } from "./style";
 import BackImg from "../../images/back_summer.png";
 import Face from "../../images/face.png";
@@ -36,6 +38,13 @@ import SumLip3 from "../../images/sum_lip3.png"; // 이미지 파일 추가
 import Ex1 from "../../images/ex1.png"; // 이미지 파일 추가
 
 const Colorlog = () => {
+  const { userId } = useParams();
+  //const navigate = useNavigate();
+  const [result, setResult] = useState("");
+  const [resultImagePath, setResultImagePath] = useState("");
+  const [facePaletteImagePath, setFacePaletteImagePath] = useState("");
+  const [mediaUrls, setMediaUrls] = useState({ imagePath: "", videoPath: "" });
+
   const cosmeticsData = [
     {
       id: 1,
@@ -60,9 +69,26 @@ const Colorlog = () => {
     },
   ];
 
+  // useEffect(() => {
+  //   // meta 태그 추가 - viewport-fit=cover 설정으로 전체 화면 덮도록 설정
+  //   const metaTag = document.createElement("meta");
+  //   metaTag.name = "viewport";
+  //   metaTag.content =
+  //     "width=device-width, initial-scale=1.0, viewport-fit=cover";
+  //   document.head.appendChild(metaTag);
+
+  //   // iOS에서 Safari 상태바 처리
+  //   const appleStatusBarMetaTag = document.createElement("meta");
+  //   appleStatusBarMetaTag.name = "apple-mobile-web-app-status-bar-style";
+  //   appleStatusBarMetaTag.content = "black-translucent"; // 상태바 투명하게 설정
+  //   document.head.appendChild(appleStatusBarMetaTag);
+  // }, []);
+
   return (
-    <ColorlogContainer>
+    // <AppContainer>
+    <ColorlogContainer style={{ backgroundColor: "#ffffff" }}>
       <Header>
+        <GlobalStyle />
         <h1>colorlog</h1>
       </Header>
 
@@ -86,19 +112,19 @@ const Colorlog = () => {
 
       <Palette>
         <h3>face palette</h3>
-        <img src={Ex1} alt="Face palette image" style={{ width: "70vw" }} />
+        <img src={Ex1} alt="Face palette image" style={{ width: "55vw" }} />
         <p>얼굴에서 추출된 색상 팔레트입니다.</p>
       </Palette>
 
       <BestColor>
         <h3>best color</h3>
         <ColorCircles>
-          <Circle bgColor="#f7b0e3" />
-          <Circle bgColor="#ce82da" />
-          <Circle bgColor="#e8f0c3" />
-          <Circle bgColor="#9ae7d6" />
-          <Circle bgColor="#8dcff5" />
-          <Circle bgColor="#6775c4" />
+          <Circle bgColor="#9EA8FF" />
+          <Circle bgColor="#03006B" />
+          <Circle bgColor="#520080" />
+          <Circle bgColor="#6A1F2B" />
+          <Circle bgColor="#2F6C73" />
+          <Circle bgColor="#234724" />
         </ColorCircles>
         <LineBelowCircles />
       </BestColor>
@@ -118,6 +144,7 @@ const Colorlog = () => {
       </Celebrities>
 
       <CosmeticsList>
+        <GlobalStyle />
         <h3>Cosmetics List</h3>
         <ul>
           {cosmeticsData.map((item) => (
@@ -125,6 +152,7 @@ const Colorlog = () => {
               <ProductImage src={item.image} alt={item.name} />
               <ProductInfo>
                 <BrandAndName>
+                  <GlobalStyle />
                   <Brand>{item.brand}</Brand>
                   <span>{item.name}</span>
                 </BrandAndName>
@@ -135,6 +163,7 @@ const Colorlog = () => {
         </ul>
       </CosmeticsList>
     </ColorlogContainer>
+    // </AppContainer>
   );
 };
 
